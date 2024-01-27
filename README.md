@@ -50,3 +50,6 @@ So, there is no `ctr-fail` binary on my PATH. If I try `ctr fail`, then I get:
 ```
 from ctr binary :: ctr: 'fail' is not a ctr command. See 'ctr --help'.
 ```
+
+This message mirrors git's error message when an invalid command is passed to it.
+Obviously, one would remove the `from ctr binary ::` part of the message, but that's just for demo.
