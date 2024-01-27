@@ -42,12 +42,28 @@ fn main() {
             let external_executable = format!("ctr-{}", &args[0].to_str().unwrap());
             let ext_exe_args = &args[1..];
 
-            let msg = format!(
-                "from ctr binary :: failed to execute external process '{:?}' with args '{:?}'",
+            let which_ext_proc = process::Command::new("which")
+                .arg(&external_executable)
+                .output()
+                .expect("failed to execute which");
+
+            // if the external command is not found, exit with an error...
+            if !which_ext_proc.status.success() {
+                let m = format!(
+                    "from ctr binary :: ctr: '{}' is not a ctr command. See 'ctr --help'.",
+                    &args[0].to_str().unwrap(),
+                );
+                eprintln!("{}", m.as_str());
+                process::exit(1);
+            }
+            // ...else, continue
+
+            let m = format!(
+                "failed to execute external process '{}' with args '{:?}'",
                 &external_executable,
                 &ext_exe_args,
             );
-            let msg_str = msg.as_str();
+            let fail_msg= m.as_str();
 
             println!(
                 "from ctr binary :: Calling out to {:?} with {:?}", 
@@ -58,7 +74,7 @@ fn main() {
             process::Command::new(external_executable)
                 .args(ext_exe_args)
                 .status()
-                .expect(msg_str);
+                .expect(fail_msg);
         }
     }
 }

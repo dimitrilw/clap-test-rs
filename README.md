@@ -16,16 +16,16 @@ Run the test via `ctr asdfblah arg1 arg2`. Your output should look like:
 
 ```
 from ctr binary :: Calling out to "ctr-asdfblah" with ["arg1", "arg2"]
-hello from executable file 'ctr-asdfblah' :)
-this file received the args: arg1 arg2
+from ctr-asdfblah :: hello from executable file 'ctr-asdfblah' :)
+from ctr-asdfblah :: this file received the args: arg1 arg2
 
-about to call 'ctr clone AsdfBlah_ITS_ALIVE'
-ctr call starting...
+from ctr-asdfblah :: about to call 'ctr clone AsdfBlah_ITS_ALIVE'
+from ctr-asdfblah :: ctr call starting...
 
 from ctr binary :: Cloning AsdfBlah_ITS_ALIVE
 
-...ctr call ended
-goodbye from executable file 'ctr-asdfblah'  o/
+from ctr-asdfblah :: ...ctr call ended
+from ctr-asdfblah :: goodbye from executable file 'ctr-asdfblah'  o/
 ```
 
 This output shows the ctr binary calling out to the ctr-asdfblah binary,
@@ -37,3 +37,16 @@ That `git-foo` binary can then do whatever I need, including a call back to the 
 This allows something like `git-co` to be written, which is a common alias for `git checkout`.
 The `git-co` file would simply execute `git checkout $@` to pass along any arguments it received.
 Instant alias, but with the option of more fully powered extensions, and not _just_ an alias.
+
+Meanwhile, if an invalid command is passed to the ctr binary, it will print an error and exit.
+For example, if I do `which ctr-fail` on my current system, I get:
+
+```
+ctr-fail not found
+```
+
+So, there is no `ctr-fail` binary on my PATH. If I try `ctr fail`, then I get:
+
+```
+from ctr binary :: ctr: 'fail' is not a ctr command. See 'ctr --help'.
+```

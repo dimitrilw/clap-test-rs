@@ -1,14 +1,14 @@
-echo "hello from executable file 'ctr-asdfblah' :)"
-echo "this file received the args: $@"
+echo "from ctr-asdfblah :: hello from executable file 'ctr-asdfblah' :)"
+echo "from ctr-asdfblah :: this file received the args: $@"
 echo ""
 
-echo "about to call 'ctr clone AsdfBlah_ITS_ALIVE'"
-echo "ctr call starting..."
+echo "from ctr-asdfblah :: about to call 'ctr clone AsdfBlah_ITS_ALIVE'"
+echo "from ctr-asdfblah :: ctr call starting..."
 echo ""
 
 # this requires the 'ctr' command to be in your PATH
 ctr clone AsdfBlah_ITS_ALIVE
 
 echo ""
-echo "...ctr call ended"
-echo "goodbye from executable file 'ctr-asdfblah'  o/"
+echo "from ctr-asdfblah :: ...ctr call ended"
+echo "from ctr-asdfblah :: goodbye from executable file 'ctr-asdfblah'  o/"
