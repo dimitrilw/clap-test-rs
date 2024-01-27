@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "from ctr-asdfblah :: hello from executable file 'ctr-asdfblah' :)"
 echo "from ctr-asdfblah :: this file received the args: $@"
 echo ""
